@@ -34,24 +34,23 @@ export default function App() {
   return (
     <ThemeProvider>
       <Routes>
-        <Route path="/*" element={
-          <MobileLayout>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/calculator" element={<Calculator />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-              <Route path="/transfer" element={<ProtectedRoute><Transfer /></ProtectedRoute>} />
-              <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
-              <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
-              <Route path="/support" element={<ProtectedRoute><Support /></ProtectedRoute>} />
-              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-              <Route path="/admin" element={<ProtectedRoute adminOnly><Dashboard /></ProtectedRoute>} />
-              <Route path="/admin/transfers" element={<ProtectedRoute adminOnly><TransfersManagement /></ProtectedRoute>} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </MobileLayout>
-        } />
+        <Route element={<MobileLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/calculator" element={<Calculator />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/transfer" element={<ProtectedRoute><Transfer /></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+          <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+          <Route path="/support" element={<ProtectedRoute><Support /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
+          <Route path="/admin" element={<ProtectedRoute adminOnly><Dashboard /></ProtectedRoute>} />
+          <Route path="/admin/transfers" element={<ProtectedRoute adminOnly><TransfersManagement /></ProtectedRoute>} />
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
       </Routes>
     </ThemeProvider>
   );
