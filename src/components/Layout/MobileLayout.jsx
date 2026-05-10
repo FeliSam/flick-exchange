@@ -1,8 +1,7 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import Header from './Header';
 import BottomNav from './BottomNav';
+import Header from './Header';
 
 export default function MobileLayout({ children }) {
   const { user } = useAuth();
@@ -13,7 +12,7 @@ export default function MobileLayout({ children }) {
     <div className="app-container">
       {!hideNav && <Header />}
       <main className="content">
-        {children}
+        {children ?? <Outlet />}
       </main>
       {!hideNav && user && <BottomNav />}
     </div>
