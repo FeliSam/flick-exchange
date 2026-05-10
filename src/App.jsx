@@ -13,7 +13,6 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Support from "./pages/Support";
 import Transfer from "./pages/Transfer";
-import "./styles.css";
 
 function ProtectedRoute({ children, adminOnly = false }) {
   const { user, loading } = useAuth();
