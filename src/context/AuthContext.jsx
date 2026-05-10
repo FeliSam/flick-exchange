@@ -1,16 +1,28 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
 
   useEffect(() => {
     const stored = localStorage.getItem('currentUser');
     if (stored) setUser(JSON.parse(stored));
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+    if (darkMode) {
+      document.body.style.background = '#0F172A';
+    } else {
+      document.body.style.background = '#e5e5e5';
+    }
+  }, [darkMode]);
 
   const login = (email, password) => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -35,7 +47,7 @@ export function AuthProvider({ children }) {
       createdAt: new Date().toISOString(),
       verified: false,
       verificationDocs: [],
-      pin: userData.pin, // Add PIN to user data
+      favorites: [],
     };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
@@ -61,63 +73,10 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const validatePin = (pin) => {
-    return user && user.pin === pin;
-  };
-
-  const getUserLimits = () => {
-    if (!user) return { daily: 0, monthly: 0 };
-    
-    // Limits based on verification status
-    if (user.verified) {
-      return { daily: 500000, monthly: 2000000 }; // Verified users: 500k/day, 2M/month
-    } else {
-      return { daily: 50000, monthly: 200000 }; // Unverified users: 50k/day, 200k/month
-    }
-  };
-
-  const checkTransferLimit = (amount, currency) => {
-    if (!user) return { allowed: false, reason: 'Utilisateur non connecté' };
-    
-    const limits = getUserLimits();
-    const transfers = JSON.parse(localStorage.getItem('transfers') || '[]');
-    
-    // Get today's transfers
-    const today = new Date().toDateString();
-    const todayTransfers = transfers.filter(t => 
-      t.senderId === user.id && 
-      new Date(t.createdAt).toDateString() === today
-    );
-    const todayTotal = todayTransfers.reduce((sum, t) => sum + t.amountSent, 0);
-    
-    // Get this month's transfers
-    const thisMonth = new Date().getMonth();
-    const thisYear = new Date().getFullYear();
-    const monthTransfers = transfers.filter(t => {
-      const date = new Date(t.createdAt);
-      return t.senderId === user.id && date.getMonth() === thisMonth && date.getFullYear() === thisYear;
-    });
-    const monthTotal = monthTransfers.reduce((sum, t) => sum + t.amountSent, 0);
-    
-    if (todayTotal + amount > limits.daily) {
-      return { 
-        allowed: false, 
-        reason: `Limite journalière dépassée. Maximum: ${limits.daily.toLocaleString()} ${currency}/jour` 
-      };
-    }
-    
-    if (monthTotal + amount > limits.monthly) {
-      return { 
-        allowed: false, 
-        reason: `Limite mensuelle dépassée. Maximum: ${limits.monthly.toLocaleString()} ${currency}/mois` 
-      };
-    }
-    
-    return { allowed: true };
-  };
+  const toggleDarkMode = () => setDarkMode(d => !d);
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, updateUser, validatePin, getUserLimits, checkTransferLimit, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, updateUser, loading, darkMode, toggleDarkMode }}>
       {children}
     </AuthContext.Provider>
   );

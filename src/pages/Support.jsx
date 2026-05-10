@@ -68,7 +68,7 @@ export default function Support() {
             { q: 'Quels sont les frais ?', a: 'Nous appliquons une commission de 2.5% sur chaque transfert.' },
             { q: 'Puis-je annuler un transfert ?', a: "Oui, tant que le paiement n'a pas été confirmé." },
             { q: 'Comment suivre mon transfert ?', a: "Rendez-vous dans l'historique pour voir la progression." },
-            { q: 'Les numéros béninois sont-ils vérifiés ?', a: "Oui, nous vérifions automatiquement le réseau (MTN, Moov, Celtiis) à partir du numéro." }
+            { q: 'Les numéros béninois sont-ils vérifiés ?', a: "Oui, nous vérifions automatiquement le réseau (MTN, Moov, Celtiis)." }
           ].map((faq, idx) => (
             <div key={idx} style={{ padding: '14px', background: 'var(--bg)', borderRadius: '10px' }}>
               <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '4px', color: 'var(--text)' }}>{faq.q}</div>
@@ -83,9 +83,7 @@ export default function Support() {
           <FiInfo size={20} color="var(--text-muted)" />
           <div>
             <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text)' }}>{APP_NAME} v{APP_VERSION}</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-              Dernière mise à jour : Mai 2026
-            </div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>Dernière mise à jour : Mai 2026</div>
           </div>
         </div>
       </div>
