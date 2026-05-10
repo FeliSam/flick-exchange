@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { FiRefreshCw, FiTrendingDown, FiTrendingUp } from 'react-icons/fi';
+import React, { useState } from 'react';
 import { useExchangeRate } from '../hooks/useExchangeRate';
+import { FiArrowRight, FiRefreshCw, FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
 
 export default function Calculator() {
   const { rate, convert } = useExchangeRate();
@@ -54,7 +54,7 @@ export default function Calculator() {
       </div>
 
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        {/* <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Pour effectuer un vrai transfert, <a href="/login" style={{ color: 'var(--primary)', fontWeight: 700, textDecoration: 'none' }}>connectez-vous</a></p> */}
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Pour effectuer un vrai transfert, <a href="/login" style={{ color: 'var(--primary)', fontWeight: 700, textDecoration: 'none' }}>connectez-vous</a></p>
       </div>
     </div>
   );

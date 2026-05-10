@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-// import MobileLayout from './MobileLayout';
+import MobileLayout from './MobileLayout';
 import Header from './Header';
 import BottomNav from './BottomNav';
 
