@@ -1,11 +1,9 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import MobileLayout from './MobileLayout';
-import Header from './Header';
 import BottomNav from './BottomNav';
+import Header from './Header';
 
-export default function MobileLayout({ children }) {
+export default function MobileLayout() {
   const { user, darkMode } = useAuth();
   const location = useLocation();
   const hideNav = ['/login', '/register'].includes(location.pathname);
@@ -14,7 +12,7 @@ export default function MobileLayout({ children }) {
     <div className="app-container" data-theme={darkMode ? 'dark' : 'light'}>
       {!hideNav && <Header />}
       <main className="content">
-        {children}
+        <Outlet /> {/* 🔥 OBLIGATOIRE */}
       </main>
       {!hideNav && user && <BottomNav />}
     </div>

@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTransfer } from '../context/TransferContext';
 import { useExchangeRate } from '../hooks/useExchangeRate';
-import { FiArrowRight, FiTrendingUp, FiTrendingDown, FiRepeat, FiShield, FiClock, FiDollarSign, FiCalculator } from 'react-icons/fi';
+import { FiArrowRight, FiTrendingUp, FiTrendingDown, FiRepeat, FiShield, FiClock, FiDollarSign } from 'react-icons/fi';
+import { BsCalculator } from 'react-icons/bs';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
@@ -45,7 +46,7 @@ export default function Home() {
         display: 'flex', alignItems: 'center', gap: '12px', border: '1px solid #BBF7D0'
       }}>
         <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(16,185,129,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--success)' }}>
-          <FiCalculator size={20} />
+          <BsCalculator size={20} />
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#065F46' }}>Calculatrice de transfert</div>
