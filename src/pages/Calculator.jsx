@@ -24,21 +24,16 @@ export default function Calculator() {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '32px' }}>
           <button 
+            className="btn btn-ghost"
             onClick={() => navigate('/')}
             style={{ 
-              background: 'none', 
-              border: 'none', 
-              color: 'var(--text-muted)', 
-              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '8px',
-              borderRadius: '8px',
-              transition: 'all 0.2s ease'
+              padding: '8px 14px',
+              borderRadius: '12px',
+              fontSize: '0.95rem'
             }}
-            onMouseEnter={(e) => e.target.style.background = 'var(--bg-hover)'}
-            onMouseLeave={(e) => e.target.style.background = 'none'}
           >
             <FiArrowLeft size={20} /> Retour
           </button>

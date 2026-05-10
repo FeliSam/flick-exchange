@@ -23,10 +23,14 @@
   --radius: 16px;
   --radius-sm: 12px;
   --radius-xs: 8px;
+  --bg-secondary: #E2E8F0;
+  --bg-hover: rgba(226,232,240,0.7);
 }
 
 .dark-mode {
   --bg: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-hover: rgba(255,255,255,0.08);
   --card: #1E293B;
   --text: #F1F5F9;
   --text-light: #CBD5E1;
